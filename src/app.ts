@@ -10,8 +10,14 @@ import cmsRoutes from './modules/cms/cms.routes';
 
 const app = express();
 
+// Configuración CORS explícita y global - DEBE IR PRIMERO
+app.use(cors({
+    origin: '*', // Permite cualquier origen (frontend)
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Requested-With', 'Accept']
+}));
+
 app.use(helmet());
-app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
 
